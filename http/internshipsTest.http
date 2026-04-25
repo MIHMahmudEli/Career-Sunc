@@ -1,0 +1,69 @@
+### Create internship
+POST http://localhost:3000/internships
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MjJlYzIwNC1iNTBiLTRmNDEtYjhhOC00OTliODU4YTM5MWUiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzc3MTE1ODQ4LCJleHAiOjE3NzcxMTY3NDh9.18sF0iY-M1M-b84lT4X5Q4eO7l2bV6p6F6wB3W7C8R4
+
+{
+    "title": "Internship",
+    "description": "Internship description",
+    "location": "Dhaka",
+    "salary": "10000",
+    "status": "OPEN",
+    "deadline": "2026-12-31",
+    "createdBy": "72bec204-b50b-4f41-b8a8-499b858a391e"
+}
+
+### GET INTERNSHIPS
+GET http://localhost:3000/internships
+Content-Type: application/json
+
+
+
+### Search by keyword
+GET http://localhost:3000/internships?q=frontend
+Content-Type: application/json
+
+
+### Filter by location
+GET http://localhost:3000/internships?location=Dhaka
+Content-Type: application/json
+
+
+
+### Sort by deadline
+GET http://localhost:3000/internships?status=open&sortBy=deadline&order=ASC
+Content-Type: application/json
+
+
+### Company's own internships
+GET http://localhost:3000/internships/my
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MjJlYzIwNC1iNTBiLTRmNDEtYjhhOC00OTliODU4YTM5MWUiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzc3MTE1ODQ4LCJleHAiOjE3NzcxMTY3NDh9.18sF0iY-M1M-b84lT4X5Q4eO7l2bV6p6F6wB3W7C8R4    
+
+### Get single internship
+GET http://localhost:3000/internships/73760c60-bf7f-4170-adc3-3693b0067a99
+Content-Type: application/json
+
+### Update internship
+PATCH http://localhost:3000/internships/73760c60-bf7f-4170-adc3-3693b0067a99
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MjJlYzIwNC1iNTBiLTRmNDEtYjhhOC00OTliODU4YTM5MWUiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzc3MTE1ODQ4LCJleHAiOjE3NzcxMTY3NDh9.18sF0iY-M1M-b84lT4X5Q4eO7l2bV6p6F6wB3W7C8R4    
+
+{
+    "title": "Updated Internship",
+    "description": "Updated Internship description",
+    "location": "Sylhet",
+    "salary": "12000",
+    "status": "CLOSED",
+    "deadline": "2026-12-31"
+}
+
+### Close internship
+PATCH http://localhost:3000/internships/73760c60-bf7f-4170-adc3-3693b0067a99/close
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MjJlYzIwNC1iNTBiLTRmNDEtYjhhOC00OTliODU4YTM5MWUiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzc3MTE1ODQ4LCJleHAiOjE3NzcxMTY3NDh9.18sF0iY-M1M-b84lT4X5Q4eO7l2bV6p6F6wB3W7C8R4   
+
+### DELETE INTERNSHIP
+DELETE http://localhost:3000/internships/c1a333d4-4ce0-441c-8474-d641d67eb69a
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MjJlYzIwNC1iNTBiLTRmNDEtYjhhOC00OTliODU4YTM5MWUiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzc3MTE1ODQ4LCJleHAiOjE3NzcxMTY3NDh9.18sF0iY-M1M-b84lT4X5Q4eO7l2bV6p6F6wB3W7C8R4
