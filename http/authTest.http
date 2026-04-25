@@ -1,3 +1,4 @@
+# login first to get the token
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
@@ -41,3 +42,14 @@ Content-Type: application/json
   "fullName": "Super Admin",
   "role": "admin"
 }
+
+### GET logged in user
+GET http://localhost:3000/auth/me
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxYWQwYmY0OS03YWJhLTQ3YWEtODJlOS02YmMwYTgzNDdlZmMiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzc3MTE1NDI0LCJleHAiOjE3NzcxMTYzMjR9.DlPC3caGlf5TxXy9xQK9Q7qqGkJFc8LavOBrZzbpSSk
+### Logout
+POST http://localhost:3000/auth/logout
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxYWQwYmY0OS03YWJhLTQ3YWEtODJlOS02YmMwYTgzNDdlZmMiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzc3MTE1MjUzLCJleHAiOjE3NzcxMTYxNTN9.cYO0yG7MJMouseMLCc4Qb6kRY2UTV06vHQdfQJyTblQ
+
+

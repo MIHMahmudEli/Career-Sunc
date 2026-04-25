@@ -1,26 +1,56 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import {
+  Injectable, NotFoundException, BadRequestException
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import * as bcrypt from 'bcryptjs';
+import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { ChangePasswordDto } from './dto/change-password.dto';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(
+    @InjectRepository(User)
+    private userRepo: Repository<User>,
+  ) {}
+
+  // GET PROFILE 
+  async getProfile(userId: string) {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) throw new NotFoundException('User not found');
+    const { password, ...rest } = user;
+    return rest;
   }
 
-  findAll() {
-    return `This action returns all users`;
+  // UPDATE PROFILE 
+  async updateProfile(userId: string, dto: UpdateUserDto) {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) throw new NotFoundException('User not found');
+
+    Object.assign(user, dto);
+    await this.userRepo.save(user);
+
+    const { password, ...rest } = user;
+    return rest;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  //  CHANGE PASSWORD 
+  async changePassword(userId: string, dto: ChangePasswordDto) {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) throw new NotFoundException('User not found');
+
+    const isMatch = await bcrypt.compare(dto.oldPassword, user.password);
+    if (!isMatch) throw new BadRequestException('Old password is incorrect');
+
+    user.password = await bcrypt.hash(dto.newPassword, 10);
+    await this.userRepo.save(user);
+
+    return { message: 'Password changed successfully' };
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  // FIND BY ID (used by other modules)
+  async findById(id: string) {
+    return this.userRepo.findOne({ where: { id } });
   }
 }
