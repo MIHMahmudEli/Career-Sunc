@@ -1,0 +1,43 @@
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "Admin123"
+}
+
+### student register
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "student@example.com",
+  "password": "Student123",
+  "fullName": "John Doe",
+  "role": "student",
+  "studentId": "23-50194-1",
+  "department": "Computer Science"
+}
+
+### For a Company
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "company@example.com",
+  "password": "Company123",
+  "fullName": "Jane Smith",
+  "role": "company",
+  "companyName": "Google"
+}
+
+### For a admin
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Admin123",
+  "fullName": "Super Admin",
+  "role": "admin"
+}
